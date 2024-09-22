@@ -36,7 +36,7 @@ const jwtSecret = process.env.JWT_SECRET;
 
 // Middleware Setup
 app.use(express.json());
-allowedOrigins:["http://localhost:5173/"]
+allowedOrigins:["https://chat-frontened.onrender.com/"]
 app.use(cors({
     origin: process.env.CLIENT_URL,
     credentials: true, // Include this if you're using cookies
@@ -151,10 +151,10 @@ app.post('/login', async (req, res) => {
 });
 
 // Start Server
-const API_PORT = process.env.API_PORT
+const port = process.env.PORT
 
-    const server = app.listen(API_PORT, () => {
-        console.log(`Server is running on http://localhost:${API_PORT}`);
+    const server = app.listen(port, () => {
+        console.log(`Server is running on http://localhost:${PORT}`);
     });
 
 

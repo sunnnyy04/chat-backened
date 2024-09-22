@@ -36,7 +36,7 @@ const jwtSecret = process.env.JWT_SECRET;
 
 // Middleware Setup
 app.use(express.json());
-allowedOrigins:["https://chat-frontened.onrender.com/"]
+allowedOrigins:["https://chat-frontened.onrender.com"]
 app.use(cors({
     origin: process.env.CLIENT_URL,
     credentials: true, // Include this if you're using cookies

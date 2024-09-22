@@ -36,10 +36,18 @@ const jwtSecret = process.env.JWT_SECRET;
 
 // Middleware Setup
 app.use(express.json());
-allowedOrigins:["https://chat-frontened.onrender.com"]
+const allowedOrigins = ["https://chat-frontened.onrender.com"];
+
+// Enable CORS middleware
 app.use(cors({
-    origin: process.env.CLIENT_URL,
-    credentials: true, // Include this if you're using cookies
+    origin: function (origin, callback) {
+        if (!origin || allowedOrigins.includes(origin) || origin === process.env.CLIENT_URL) {
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
+    credentials: true, // Needed for sending cookies across domains
 }));
 
 app.use(cookieParser());
